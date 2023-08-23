@@ -44,9 +44,43 @@ def raise_both (value1, value2):
 result= raise_both (10,3)
 print(result)
 
+###Nested functions##
 
+#Long version
 
+def mod2plus5 (x1,x2,x3):
+  """Returns the remainder plus 5 of three values-THis the long version."""
+  new_x1 = x1 % 2 + 5
+  new_x2 = x2 % 2 + 5
+  new_x3 = x3 % 2 + 5
+  return (new_x1, new_x2, new_x3)
 
+result= mod2plus5 (1,2,3)
+print (result)
+
+##Shorter/nested version
+def mod2plus5 (x1, x2, x3):
+  """Returns the remainder plus 5 of three values"""
+  def inner (x):
+    """Returns the remainder plus 5 of three values"""
+    return x % 2 + 5
+  return (inner(x1), inner(x2), inner(x3))
+
+print(mod2plus5(1,2,3))
+
+#Second example of nested functions
+def raise_val (n):
+  """Return the inner function"""
+  def inner(x):
+    """Raise x to the power of n."""
+    raised=x ** n
+    return raised
+  return inner
+
+square=raise_val(2)
+cube=raise_val(3)
+
+print (square(2), cube(4))
 
 
 
